@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nosso Amor 💖</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, #ffe6f0, #ffe6fa);
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      color: #d63384;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-top: 30px;
+      margin-bottom: 10px;
+      text-shadow: 1px 1px #fff;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+
+    .contador {
+      font-size: 1.5rem;
+      background-color: rgba(255, 255, 255, 0.5);
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 0 15px #ffb6c1;
+      margin-bottom: 20px;
+    }
+
+    .galeria {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      padding: 10px;
+      max-width: 90%;
+    }
+
+    .galeria img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 15px;
+      box-shadow: 0 0 10px #ff9ac1;
+    }
+
+    audio {
+      margin-top: 10px;
+    }
+
+    .heart {
+      position: fixed;
+      top: -10px;
+      color: #ff5e9c;
+      animation: fall linear infinite;
+      user-select: none;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>💘 Gabriel & Cibele 💘</h1>
+  <p>Desde <strong>17 de setembro de 2023 às 18h</strong>, o melhor capítulo da nossa história começou. 💑</p>
+  
+  <div class="contador" id="contador"></div>
+
+  <!-- 🎵 LINHA 83: Música de fundo -->
+  <audio controls autoplay loop>
+    <source src="musica.mp3" type="audio/mpeg">
+    Seu navegador não suporta áudio :(
+  </audio>
+
+  <!-- 🖼️ LINHAS 86–91: Galeria de fotos -->
+  <div class="galeria">
+    <img src="foto1.jpg" alt="Foto 1">
+    <img src="foto2.jpg" alt="Foto 2">
+    <img src="foto3.jpg" alt="Foto 3">
+    <img src="foto4.jpg" alt="Foto 4">
+    <img src="foto5.jpg" alt="Foto 5">
+    <img src="foto6.jpg" alt="Foto 6">
+  </div>
+
+  <script>
+    const dataInicio = new Date("2023-09-17T18:00:00");
+
+    function atualizarContador() {
+      const agora = new Date();
+      const diferenca = agora - dataInicio;
+
+      const segundos = Math.floor(diferenca / 1000);
+      const minutos = Math.floor(segundos / 60);
+      const horas = Math.floor(minutos / 60);
+      const dias = Math.floor(horas / 24);
+      const semanas = Math.floor(dias / 7);
+      const anos = (dias / 365.25).toFixed(2);
+
+      document.getElementById("contador").innerHTML = `
+        🗓️ <strong>${dias}</strong> dias<br>
+        ⏳ <strong>${horas}</strong> horas<br>
+        ⏱️ <strong>${minutos}</strong> minutos<br>
+        🧮 <strong>${semanas}</strong> semanas<br>
+        💞 <strong>${anos}</strong> anos
+      `;
+    }
+
+    setInterval(atualizarContador, 1000);
+    atualizarContador();
+
+    function criarCoracoes() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.innerHTML = '💖';
+
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = 2 + Math.random() * 3 + 's';
+      heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
+
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 5000);
+    }
+
+    setInterval(criarCoracoes, 300);
+  </script>
+</body>
+</html>
